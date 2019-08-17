@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+  	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
+    <title>Ordenes de Trabajo</title>
+    <style>
+		body{
+			background-color: black;
+			color: white;
+			font-family: monospace;
+		}
+		table,tr,th,td {
+			padding : 0.3em;
+			border: 1px solid white;
+			text-align: center;
+		}
+		a:hover {
+			color: #FFC106;
+			text-decoration : none;
+		}
+		
+		a {
+			color: #FFC106;
+			text-decoration : none;
+		}
+		.delete:hover {
+			color: #E53935;
+			text-decoration : none;
+		}
+		.add:hover{
+			color: #00E676;
+		}
+		.description:hover{
+			color: peru;
+		}
+    </style>	
+  </head>
+  <body>
+  	<h1>Lista de Ordenes</h1>
+	<p>
+	<a th:href = "@{/formulario}" th:text = "'Crear nueva orden'"></a><br/>
+	<a th:href = "@{/index(abierto=true)}" th:text = "'Ver Ordenes abiertas'"></a><br/>
+	<a th:href = "@{/index(abierto=false)}" th:text = "'Ver Todas las ordenes'"></a>
+	</p> 
+    	<table>
+		<tr>
+			<th>Nombre</th>
+			<th>Patente Auto</th>
+			<th>Detalle Falla</th>
+			<th>Importe Final</th>
+			<th>Agregar Repuesto</th>
+		</tr>
+		<tr th:each="oa: ${ordenes}">		
+			<td th:text="${oa.getPropietario().getNombre()}"></td>    	 
+			<td th:text="${oa.getPatente()}"></td>    	 
+			<td th:text="${oa.getDetalleFalla()}"></td> 
+    	    <td><a th:href="@{/importe(idOrden=${oa.getIdOrdenTbjo()})}"
+    	    th:text = "'Ver Importe Final'"></a></td>
+    	    
+    	   	<td th:if="${oa.isAbierto()}">
+			<a th:href="@{/agRepuesto(idOrden=${oa.getIdOrdenTbjo()})}"
+    	    th:text = "'Agregar Repuestos'"></a></td>
+    	  
+    	   	<td th:unless="${oa.isAbierto()}">
+			<a th:text = "' Operacion cerrada '"></a></td>
+    	   				
+		</tr>
+	</table> 
+  </body>
+</html>	

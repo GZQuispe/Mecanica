@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
+    <title>Bienvenido</title>
+    <style>
+		body{
+			background-color: black;
+			color: white;
+			font-family: monospace;
+		}
+    </style>
+    </head>	
+		<body>
+    <h1>Formulario</h1>
+         <a th:href = "@{/crearCliente}" th:text = "'Crear nuevo Cliente'"></a>
+     	<form th:action="formulario" th:object="${orden}" method="post">
+    <label>Patente</label>
+    <input type="text" th:field="*{patente}" />
+    <label>Fecha de Ingreso</label>
+    <input type="text" th:field="*{fechaIngreso}" />
+    <label>Marca</label>
+    <input type="text" th:field="*{marca}" />
+    <label>Detalle del Problema</label>
+    <input type="text" th:field="*{detalleFalla}" />
+    <br/>
+    <label>Propietario</label>
+    <select th:field="*{propietario}">
+		<option th:each="a : ${listaClientes}"
+		th:value="${a.getIdPropietario()}"
+		th:text="${a.getNombre()}"></option>
+	</select>
+    <input class="btn btn-outline-warning" type = "submit" value = "Ingresar"/>
+    </form>    
+	<a th:href = "@{/index(abierto=false)}" th:text = "'Ver todas las ordenes'"></a>
+	</body>
+</html>

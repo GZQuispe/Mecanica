@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
+    <title>Nuevo Cliente</title>
+    <style>
+		body{
+			background-color: black;
+			color: white;
+			font-family: monospace;
+		}
+    </style>
+    </head>	
+		<body>
+    <h1>Formulario Cliente</h1>
+    	<a th:href = "@{/formulario}" th:text = "'Volver a la orden'"></a><br/>
+     	<form th:action="crearCliente" th:object="${cliente}" method="post">
+    <label>Nombre</label>
+    <input type="text" th:field="*{nombre}" />
+    <label>Apellido</label>
+    <input type="text" th:field="*{apellido}" />
+    <label>DNI</label>
+    <input type="number" th:field="*{dni}" />
+    <label>Direccion</label>
+    <input type="text" th:field="*{direccion}" />
+    <label>Telefono</label>
+    <input type="number" th:field="*{telefono}" />
+    <br/>
+    <input class="btn btn-outline-warning" type = "submit" value = "Ingresar"/>
+    </form>
+  
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
+    <title>Final</title>
+    <style>
+		body{
+			background-color: black;
+			color: white;
+			font-family: monospace;
+		}
+		table,tr,th,td {
+			padding : 0.3em;
+			border: 1px solid white;
+			text-align: center;
+		}
+		a:hover {
+			color: #FFC106;
+			text-decoration : none;
+		}
+		
+		a {
+			color: #FFC106;
+			text-decoration : none;
+		}
+		.delete:hover {
+			color: #E53935;
+			text-decoration : none;
+		}
+		.add:hover{
+			color: #00E676;
+		}
+		.description:hover{
+			color: peru;
+		}
+    </style>	
+  </head>
+  <body>
+      <h1>Detalles</h1>
+		<p th:text = "'Cliente : ' + ${orden.getPropietario().getNombre()}"></p>
+    	<table>
+		<tr>
+			<th>Repuesto</th>
+			<th>Cantidad</th>
+			<th>Costo</th>
+			<th>Horas</th>
+		</tr>
+		<tr th:each="ro: ${listaRep}">	
+			<td th:text="${ro.getRepuesto().getDescripcion()}"></td>    
+			<td th:text="${ro.getCantidad()}"></td>	 
+			<td th:text="${ro.getRepuesto().getCosto()}"></td>    
+			<td th:text="${ro.getHoras()}"></td>    	 
+		</tr>
+		<tr>
+			<td colspan="4" th:text="' Importe Final: ' + ${orden.getImporteFinal()}"></td>
+	
+		</tr>
+	</table> 
+	<a th:href = "@{/index(abierto=false)}" th:text = "'Ver todas las ordenes'"></a>
+  </body>
+</html>	
